@@ -2,71 +2,88 @@
 
 # Micronegative
 
-A local-first, film-look photo editor. RAW and TIFF import, negative inversion, and a full stack of
-grading and retouching tools — running entirely on your own machine.
+### A darkroom that runs on your desk
 
-**Nothing is uploaded.** Photographs are read, edited and exported locally; the AI tools run
-on-device from models the app downloads once and caches.
+Not a filter pack. An emulsion — measured stocks, real grain structure, halation that blooms where
+the light actually was. Everything happens on your machine. Nothing is uploaded, ever.
 
-**[⬇ Download for macOS](../../releases/latest)** · [Use it in a browser](https://micronegative.com)
+**[⬇ Download for macOS](../../releases/latest)** · **[Open it in a browser](https://micronegative.com)**
 
 ---
 
-## What it does
+## Load the negative
 
-Twenty-nine tools across five stages, applied as a non-destructive chain:
+Drop a card of Sony A1 or Fujifilm frames in and they come up as fast as you can arrow through them.
+A 42MB Leica DNG hits the screen in about a twentieth of a second — Micronegative reads the preview
+your camera already wrote instead of grinding the sensor data first.
 
-| Stage | Tools |
-|---|---|
-| **Input** | Exposure Baseline, Colour Calibration, Negative Conversion, Log Conversion |
-| **Repair** | Crop & Straighten, Perspective, Lens Corrections, Clone & Heal, Sky Recovery, Facelift |
-| **Grade** | Exposure & Colour, Zones, Light Zones, Tone Curve, Lift/Gamma/Gain, HSL & Split Toning, Highlight Roll-off, Masks |
-| **Look** | Microfilm, Colour Wander, Film Emulation, Halation, Grain, Cinema Looks, Lenses, Diffusion, Dirt |
-| **Output** | Finishing, Export |
+**Your originals are never touched.** Not converted, not replaced, not moved. The file that came off
+the card is the file still on the disk when you're done.
 
-Plus a Gallery for importing, rating and picking; and Mono, Print and Restore rooms.
+Fujifilm RAF, Sony ARW, Leica and Samsung DNG, Canon, Nikon and the rest — decoded locally, no
+cloud, no round trip.
 
-## RAW support
+## The light table
 
-Camera RAW is decoded locally via LibRaw (WebAssembly). Browsing reads the **preview the camera
-already embedded** rather than demosaicing the file — a 42MB Leica DNG opens in about 50ms — and
-your original file is never modified or discarded.
+Point it at a shoot folder and it builds a contact sheet from what's there. Thumbnails and metadata
+only — nothing duplicated, nothing quietly filling your drive. Your library stays in Finder exactly
+where you put it.
 
-Tested on Fujifilm RAF (X-Trans), Sony ARW, Leica and Samsung DNG.
+Every frame is read for when the shutter fired, which body, which lens, at what stop. Throw the
+files in any order you like; they land in the order you shot them. Rate, flag, pick — then take the
+keepers through.
 
-## On-device AI
+## The grade
 
-Six models totalling ~330MB, downloaded once on first use and cached — object selection (SAM),
-erase & heal (LaMa), depth, face landmarks, subject detection and sky segmentation. You are asked
-before anything downloads, and no image data leaves the machine.
+Twenty-nine tools in a chain you can reorder, mask, and switch off one piece at a time. Nothing is
+baked until you export.
 
-## Install (macOS)
+**Film Emulation** across measured stocks — Portra, Ektar, Gold, Superia, Provia, Ektachrome — with
+push and pull, print path, and per-channel toe and shoulder.
 
-The build is **unsigned**, so Gatekeeper will refuse it on first open. To allow it:
+**Grain** modelled as silver crystals rather than noise: ISO, density, chroma and the scan
+resolution it's read at. The loupe lays out seven stocks from 50 to 3200 so you choose it by eye,
+against your own frame, not by dragging a number.
 
-1. Download and unzip the release.
-2. Move `Micronegative.app` to `/Applications`.
-3. Right-click the app → **Open** → **Open** in the dialog. (A plain double-click will not offer
-   the option; this is only needed once.)
+**Colour Wander** lets a colour run out of its own saturation points and along the exposure, the way
+a wet emulsion bleeds — with an overlay that shows you exactly how far it's reaching.
 
-If macOS still refuses, clear the quarantine attribute:
+**Halation** round the highlights. **Diffusion** for the filter over the lens. **Cinema Looks** with
+a contact sheet cut from your own picture. A **Lens** stage with real flare, anamorphic streaks,
+bokeh shaped by aperture blades, and falloff toward the corners.
+
+Underneath it: zones and curves, lift/gamma/gain, HSL and split toning, highlight roll-off, gradient
+and radial masks, clone & heal, sky recovery, and a facelift pass that finds the face itself.
+
+## It stays on your machine
+
+Object selection, erase & heal, depth, face landmarks and sky all run locally — the models travel
+inside the app, so it works with the network unplugged. No account. No telemetry. Nothing uploaded.
+The only network request this editor ever makes is fetching model weights, and it asks first.
+
+---
+
+## Installing on macOS
+
+The build is **unsigned**, so macOS will refuse it the first time.
+
+1. Open the DMG and drag **Micronegative** into Applications.
+2. **Right-click the app → Open → Open.** A double-click won't offer the choice. Once only.
+
+If it still refuses:
 
 ```
 xattr -dr com.apple.quarantine /Applications/Micronegative.app
 ```
 
-## Browser version
+Requires macOS 10.12+ on Apple silicon. 490MB, because the models come with it.
 
-The same application runs at **[micronegative.com](https://micronegative.com)** with no install.
-Indexing a folder of photographs in place needs the File System Access API, so that feature is
-Chromium-only (Chrome, Edge, Opera); everything else works anywhere.
+## Or don't install anything
 
-## Privacy
-
-No accounts, no telemetry, no uploads. Photographs and edits stay in local browser storage or in
-the folder you point the app at. The model downloads are the only network requests the editor
-makes, and they fetch weights only — never your images.
+The same editor runs at **[micronegative.com](https://micronegative.com)**. Cataloguing a folder in
+place needs the File System Access API, so that one feature wants Chrome, Edge or Opera; everything
+else works anywhere.
 
 ---
 
-Source is not currently public; this repository exists to distribute the builds.
+Source is not currently public — this repository exists to distribute the builds.
