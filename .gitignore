@@ -1,0 +1,6 @@
+# Build artifacts are distributed as GitHub Releases, never committed — a 490MB DMG would blow
+# past the 100MB per-file limit for repository content (Releases allow up to 2GB per asset).
+*.dmg
+*.zip
+*.blockmap
+dist/
